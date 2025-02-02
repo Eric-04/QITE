@@ -1,4 +1,3 @@
-from edge_coloring import EdgeColoring
 from circuit import Circuit
 
 import numpy as np
@@ -12,7 +11,6 @@ from qiskit import *
 class DFS():
     def __init__(self,
                 graph: Union[Graph, List],
-                gamma: float,
                 start_vertex: Optional[int] = 0,
                 ):
         self.start_vertex = start_vertex
@@ -53,6 +51,6 @@ class DFS():
         
         circ = Circuit(self.graph, opt_edges, no_opt_edges)
         
-        self.qc = circ.create_circuit(optimize=optimize,undo_gates=undo_gates)
+        self.qc = circ.create_circuit()
         
         return self.qc

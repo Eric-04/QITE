@@ -3,7 +3,6 @@ from qiskit import QuantumCircuit
 from qiskit.circuit import ParameterVector
 import networkx as nx
 
-
 class Circuit():
     
     def __init__(self,
@@ -18,7 +17,7 @@ class Circuit():
         self.graph = graph
         self.qc = QuantumCircuit(self.graph.number_of_nodes())
     
-    def _add_unoptimized_edges(self, undo_gates:bool):
+    def _add_unoptimized_edges(self):
         """Appends the circuit corresponding to the unoptimized edges"""
         for t, edge in zip(self.gamma[len(self.opt_edges):], self.no_opt_edges):
             self.qc.cx(edge[0],edge[1])
@@ -26,7 +25,7 @@ class Circuit():
             self.qc.cx(edge[0],edge[1])
     
         
-    def create_circuit(self,optimize=True,undo_gates=True) -> QuantumCircuit:
+    def create_circuit(self) -> QuantumCircuit:
         """Given the set of optimized and unoptimized edges, creates the quantum circuit"""
         self.qc.h(range(self.qc.num_qubits))
 
@@ -34,6 +33,6 @@ class Circuit():
             self.qc.ry(t,edge[1])
             self.qc.cx(edge[0],edge[1])
         
-        self._add_unoptimized_edges(undo_gates=undo_gates)
+        self._add_unoptimized_edges()
         
         return self.qc

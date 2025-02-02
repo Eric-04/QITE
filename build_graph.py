@@ -6,7 +6,7 @@ from dfs import DFS
 
 # Visualization will be performed in the cells below;
 def build_ansatz(graph: nx.Graph) -> QuantumCircuit:
-    obj = DFS(graph, 0.57, 1)
+    obj = DFS(graph, 1)
     qc = obj.dfs_ansatz(undo_gates=False)
 
     return qc
