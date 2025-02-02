@@ -3,6 +3,8 @@ from qiskit import QuantumCircuit, transpile
 from qiskit.circuit import ParameterVector
 from qiskit.quantum_info import SparsePauliOp
 
+from dfs import DFS
+
 # Visualization will be performed in the cells below;
 def build_ansatz(graph: nx.Graph) -> QuantumCircuit:
     
@@ -15,7 +17,12 @@ def build_ansatz(graph: nx.Graph) -> QuantumCircuit:
         ansatz.ry(t, v)
         ansatz.cx(u, v)
 
-    return ansatz
+    theta = ParameterVector(r"$\theta$", graph.number_of_edges())
+
+    obj = DFS(graph, 0.57, 1)
+    qc = obj.dfs_ansatz(undo_gates=False)
+
+    return qc
 
 def draw_graph(graph: nx.Graph, ansatz: QuantumCircuit):
     ansatz = build_ansatz(graph)
