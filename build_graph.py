@@ -9,7 +9,6 @@ def build_ansatz(graph: nx.Graph) -> QuantumCircuit:
     ansatz = QuantumCircuit(graph.number_of_nodes())
     ansatz.h(range(graph.number_of_nodes()))
 
-    # TODO: ansatz
     theta = ParameterVector(r"$\theta$", graph.number_of_edges())
     for t, (u, v) in zip(theta, graph.edges):
         ansatz.cx(u, v)

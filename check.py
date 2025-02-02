@@ -23,8 +23,7 @@ def build_solution(qit_evolver, ansatz, graph):
 
     # Now find the most likely MaxCut solution as sampled from your optimized state
     # We'll leave this part up to you!!!
-    # TODO: fill in
-    most_likely_soln = ""
+    most_likely_soln, _ = max(counts.items(), key=lambda x: x[1])
 
     print(counts)
 
