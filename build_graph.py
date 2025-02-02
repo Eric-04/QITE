@@ -1,24 +1,11 @@
 import networkx as nx
 from qiskit import QuantumCircuit, transpile
-from qiskit.circuit import ParameterVector
 from qiskit.quantum_info import SparsePauliOp
 
 from dfs import DFS
 
 # Visualization will be performed in the cells below;
 def build_ansatz(graph: nx.Graph) -> QuantumCircuit:
-    
-    ansatz = QuantumCircuit(graph.number_of_nodes())
-    ansatz.h(range(graph.number_of_nodes()))
-
-    theta = ParameterVector(r"$\theta$", graph.number_of_edges())
-    for t, (u, v) in zip(theta, graph.edges):
-        ansatz.cx(u, v)
-        ansatz.ry(t, v)
-        ansatz.cx(u, v)
-
-    theta = ParameterVector(r"$\theta$", graph.number_of_edges())
-
     obj = DFS(graph, 0.57, 1)
     qc = obj.dfs_ansatz(undo_gates=False)
 
