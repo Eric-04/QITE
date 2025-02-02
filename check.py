@@ -34,9 +34,9 @@ def build_solution(qit_evolver, ansatz, graph):
     XS_brut, XS_balanced, XS_connected = get_challenge_solutions(graph)
     print_shots(counts, shots, XS_brut, XS_balanced, XS_connected)
 
-    print("Base score: " + str(final_score(graph,XS_brut,counts,shots,ansatz,'base')))
-    print("Balanced score: " + str(final_score(graph,XS_brut,counts,shots,ansatz,'balanced')))
-    print("Connected score: " + str(final_score(graph,XS_brut,counts,shots,ansatz,'connected')))
+    print("Base score: " + str(final_score(graph,XS_brut,XS_balanced, XS_connected,counts,shots,ansatz,'base')))
+    print("Balanced score: " + str(final_score(graph,XS_brut,XS_balanced, XS_connected,counts,shots,ansatz,'balanced')))
+    print("Connected score: " + str(final_score(graph,XS_brut,XS_balanced, XS_connected,counts,shots,ansatz,'connected')))
     return most_likely_soln
 
 def interpret_solution(graph, bitstring):
